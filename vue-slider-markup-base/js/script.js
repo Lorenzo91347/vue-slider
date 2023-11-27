@@ -1,8 +1,15 @@
+/* 
+Vue link
+*/
+
 const { createApp } = Vue;
 
-
+/* Vue App Start */
 
 createApp({
+
+    /* Content */
+
     data() {
         return {
             content: {
@@ -30,9 +37,31 @@ createApp({
 
                 ]
             },
-            imgClass: 'mainImg'
+            imgClass: 'mainImg',
+            currentIndex: 0,
+        }
+    },
+
+    /* Buttons Methods */
+
+    methods: {
+        next() {
+            this.currentIndex++;
+            if (this.currentIndex > this.content.image.length - 1) {
+                this.currentIndex = 0;
+            }
+        },
+        prev() {
+            this.currentIndex--;
+            if (this.currentIndex < 0) {
+                this.currentIndex = this.content.image.length - 1;
+            }
+        },
+        changeImage(index) {
+            this.currentIndex = index;
 
         }
+
     }
 }).mount('#app');
 

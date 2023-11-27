@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- head and meta -->
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,30 +13,43 @@
 
 <body>
 
+    <!-- Vue Js app start -->
     <div id="app" v-cloak>
 
         <div class="container">
+
             <div class="slider-wrapper" tabindex="0">
+
+                <!-- Main Content from Vue -->
+
                 <div class="item">
-                    <img :src="content.image[0]" :class="imgClass" alt="Spiderman"></img>
+                    <img :src="content.image[currentIndex]" :class="imgClass" alt="Spiderman"
+                        @click='changeImage(currentIndex)'></img>
                     <div class="text">
-                        <h3>{{ content.title[0]}}</h3>
-                        <p>{{content.text[0]}}</p>
+                        <h3>{{ content.title[currentIndex]}}</h3>
+                        <p>{{content.text[currentIndex]}}</p>
                     </div>
                 </div>
+
+                <!-- Thumbnails -->
 
                 <div class="thumbs">
-                    <div class="thumb"><img v-for="image in content.image" :src="image" alt="">
+                    <div class="thumb">
+                        <img v-for="(image,index) in content.image" :src="image" :alt="index" class="thumb">
                     </div>
 
-                    <div class="prev"></div>
-                    <div class="next"></div>
-                </div>
+                    <!-- Previous/Next Buttons -->
 
+                    <div class="prev" @click="prev"></div>
+                    <div class="next" @click="next"></div>
+                </div>
             </div>
         </div>
-
     </div>
+
+    <!-- Vue Js App End -->
+
+    <!-- Vue and Vanilla Js script links -->
 
     <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
     <script src="./js/script.js"></script>
